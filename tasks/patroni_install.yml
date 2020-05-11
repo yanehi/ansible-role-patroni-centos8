@@ -1,0 +1,6 @@
+---
+- name: install patroni and etcd
+  pip:
+   name: "{{ patroni_packages }}"
+   state: present
+   executable: /usr/bin/pip3

@@ -1,0 +1,30 @@
+---
+language: python
+services: docker
+
+env:
+  global:
+    - ROLE_NAME: patronicentos8
+  matrix:
+    - MOLECULE_DISTRO: centos8
+
+install:
+  # Install test dependencies.
+  - pip3 install molecule yamllint ansible-lint docker
+
+before_script:
+  # Use actual Ansible Galaxy role name for the project directory.
+  # upgrade pip version to 20.1
+  - curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  - python get-pip.py
+  - pip --version
+  - cd ../
+  - mv ansible-role-$ROLE_NAME yanehi.$ROLE_NAME
+  - cd yanehi.$ROLE_NAME
+
+script:
+  # Run tests.
+  - molecule test
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

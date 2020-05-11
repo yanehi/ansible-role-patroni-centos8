@@ -1,0 +1,53 @@
+---
+- name: udp etcd connection port for etcd
+  firewalld:
+    port: "{{ etcd_port }}/udp"
+    permanent: yes
+    immediate: yes
+    zone: public
+    state: enabled
+
+- name: tcp etcd connection port for etcd
+  firewalld:
+    port: "{{ etcd_port }}/tcp"
+    permanent: yes
+    immediate: yes
+    zone: public
+    state: enabled
+
+- name: postgresql server port
+  firewalld:
+    port: "{{ pg_port }}/tcp"
+    permanent: yes
+    immediate: yes
+    zone: public
+    state: enabled
+
+- name: patroni port
+  firewalld:
+    port: "{{ patroni_port }}/tcp"
+    permanent: yes
+    immediate: yes
+    zone: public
+    state: enabled
+
+- name: dhcp reserved port
+  firewalld:
+    port: 67/tcp
+    permanent: yes
+    immediate: yes
+    zone: public
+    state: enabled
+
+- name: dhcp reserved port
+  firewalld:
+    port: 68/tcp
+    permanent: yes
+    immediate: yes
+    zone: public
+    state: enabled
+
+- name: reload service firewalld
+  systemd:
+    name: firewalld
+    state: reloaded

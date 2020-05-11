@@ -1,0 +1,27 @@
+---
+- name: upgrade all packages
+  dnf:
+    name: "*"
+    state: latest
+
+- name: install epel repo
+  dnf:
+    name: epel-release
+    state: present
+
+- name: install required packages
+  dnf:
+    name: "{{ os_python_packages }}"
+    state: present
+#  notify: start firewalld
+
+- name: start service firewalld
+  systemd:
+    state: started
+    name: firewalld
+
+- name: enable service firewalld
+  systemd:
+    name: firewalld
+    enabled: yes
+    masked: no

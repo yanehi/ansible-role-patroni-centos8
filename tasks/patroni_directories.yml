@@ -1,0 +1,30 @@
+---
+- name: patroni data directory
+  file:
+    path: "{{ patroni_data_dir }}"
+    owner: "{{ pg_user }}"
+    group: "{{ pg_user }}"
+    state: directory
+    mode: 0700
+
+- name: patroni log directory
+  file:
+    path: "{{ patroni_log_dir }}/"
+    owner: "{{ pg_user }}"
+    group: "{{ pg_user }}"
+    state: directory
+
+- name: postgres owner bin directory
+  file:
+    path: "{{ pg_bin_path }}"
+    recurse: yes
+    owner: "{{ pg_user }}"
+    group: "{{ pg_user }}"
+
+- name: patroni conf directory
+  file:
+    path: "{{ patroni_home }}"
+    owner: "{{ pg_user }}"
+    group: "{{ pg_user }}"
+    state: directory
+    mode: 0700
