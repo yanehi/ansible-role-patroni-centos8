@@ -4,7 +4,7 @@ services: docker
 
 env:
   global:
-    - ROLE_NAME: patronicentos8
+    - ROLE_NAME: patroni-centos8
   matrix:
     - MOLECULE_DISTRO: centos8
 
