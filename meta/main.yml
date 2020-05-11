@@ -2,7 +2,7 @@
 dependencies: []
 
 galaxy_info:
-  role_name: patronicentos8
+  role_name: patroni-centos8
   description: Patroni with Postgresql12 for CentOS 8
   author: yanehi
   company: ""
