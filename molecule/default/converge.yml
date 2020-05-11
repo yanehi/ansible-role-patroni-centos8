@@ -3,4 +3,4 @@
   hosts: all
   become: true
   roles:
-    - role: yanehi.patronicentos8
+    - role: yanehi.patroni-centos8
